@@ -5,6 +5,7 @@ let score = parseFloat(scoreDiv.innerText);
 let scorePerClick = 1;
 let scorePerSec = 0;
 let TPS = 5;
+let shesh = "shesh";
 
 function Auto() {
 	scoreDiv.innerText = (parseFloat(scoreDiv.innerText) + (scorePerSec / TPS)).toFixed(2);
