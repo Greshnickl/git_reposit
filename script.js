@@ -34,7 +34,8 @@ function scorePlusMod(id, type){
 	} else if (type === 1) {
 		if (score >= parseInt(upgradescost[id].innerText)){
 			scorePerSec += parseInt(upgrades[id].innerText);
-			score = score - parseInt(upgradescost[id].innerText);
+			score = (score - parseInt(upgradescost[id].innerText)).toFixed(2);
+			upgradescost[id].innerText = Math.ceil(parseFloat(upgradescost[id].innerText) * 1.7)
 			scoreDiv.innerText = score;
 		}
 	}
