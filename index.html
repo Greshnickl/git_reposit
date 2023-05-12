@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>0.01</title>
 </head>
-<body>
+<body onload="start()">
 	<p id="score">
 		0
 	</p>
@@ -16,14 +16,18 @@
 		<li>
 			<p>+<span class="upgrades">1</span> to score per click</p>
 			<p>Cost: <span class="upgradescost">20</span></p>
-			<button onclick="scorePlusMod(0, 0)">buy</button>
+			<button onclick="scorePlusMod(0, 0)" class="upgradeButton">buy</button>
 		</li>
 		<li>
 			<p>+<span class="upgrades">1</span> to score per second</p>
 			<p>Cost: <span class="upgradescost">10</span></p>
-			<button onclick="scorePlusMod(1, 1)">buy</button>
+			<button onclick="scorePlusMod(1, 1)" class="upgradeButton">buy</button>
 		</li>
-		<li></li>
+		<li>
+			<p>+<span class="upgrades">5</span> to score per second</p>
+			<p>Cost: <span class="upgradescost">100</span></p>
+			<button onclick="scorePlusMod(2, 1)" class="upgradeButton">buy</button>
+		</li>
 		<li></li>
 		<li></li>
 	</ul>
