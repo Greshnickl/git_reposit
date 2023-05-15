@@ -5,31 +5,47 @@
 	<title>0.01</title>
 </head>
 <body onload="start()">
-	<p id="score">
-		0
-	</p>
-	<button onclick="Click()" id="clickButton">Click</button>
 	<p>
-		Upgrades:
+		Gold ore: <span id="goldore">0</span>
+	</p>
+	<p>
+		Generators:
 	</p>
 	<ul>
 		<li>
-			<p>+<span class="upgrades">1</span> to score per click</p>
-			<p>Cost: <span class="upgradescost">20</span></p>
-			<button onclick="scorePlusMod(0, 0)" class="upgradeButton">buy</button>
+			<p class="upgradename"></p>
+			<progress class="scales" max="100" value="0"></progress>
+			<button class="upgradeButton" onclick="scaleup(0)">buy</button>
+			<p class="upgradedescription"></p>
 		</li>
 		<li>
-			<p>+<span class="upgrades">1</span> to score per second</p>
-			<p>Cost: <span class="upgradescost">10</span></p>
-			<button onclick="scorePlusMod(1, 1)" class="upgradeButton">buy</button>
+			<p class="upgradename"></p>
+			<progress class="scales" max="300" value="0"></progress>
+			<button class="upgradeButton" onclick="scaleup(1)">buy</button>
+			<p class="upgradedescription"></p>
+
 		</li>
 		<li>
-			<p>+<span class="upgrades">5</span> to score per second</p>
-			<p>Cost: <span class="upgradescost">100</span></p>
-			<button onclick="scorePlusMod(2, 1)" class="upgradeButton">buy</button>
+			<p class="upgradename"></p>
+			<progress class="scales" max="500" value="0"></progress>
+			<button class="upgradeButton" onclick="scaleup(2)">buy</button>
+			<p class="upgradedescription"></p>
+
 		</li>
-		<li></li>
-		<li></li>
+		<li>
+			<p class="upgradename"></p>
+			<progress class="scales" max="500" value="0"></progress>
+			<button class="upgradeButton" onclick="scaleup(3)">buy</button>
+			<p class="upgradedescription"></p>
+
+		</li>
+		<li>
+			<p class="upgradename"></p>
+			<progress class="scales" max="500" value="0"></progress>
+			<button class="upgradeButton" onclick="scaleup(4)">buy</button>
+			<p class="upgradedescription"></p>
+
+		</li>
 	</ul>
 	<script type="text/javascript" src="script.js">
 				
