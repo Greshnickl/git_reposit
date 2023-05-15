@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>0.01</title>
+	<title>0.02</title>
 </head>
 <body onload="start()">
 	<p>
 		Gold ore: <span id="goldore">0</span>
+	</p>
+	<p>
+		Gold ingots: <span id="goldnugget">0</span> <button>sell</button>
 	</p>
 	<p>
 		Generators:
@@ -47,6 +50,12 @@
 
 		</li>
 	</ul>
+
+
+	<progress value="0" max="300" class="craftscales"></progress>
+	<button class="craftButton" onclick="resurses[0][5] = true">craft</button>
+	<progress value="0" max="300" class="craftscales"></progress>
+	<button class="craftButton" onclick="craft(1)">craft</button>
 	<script type="text/javascript" src="script.js">
 				
 	</script>
