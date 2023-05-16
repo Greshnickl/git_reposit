@@ -7,19 +7,33 @@ let scales = document.getElementsByClassName("scales");
 let upgradedescription = document.getElementsByClassName("upgradedescription");
 let craftscales = document.getElementsByClassName("craftscales");
 let craftButtons = document.getElementsByClassName("craftButton");
+let craftlabels = document.getElementsByClassName("craftlabel");
 //let goldore = 110;
 let resurses = [[], []];
 resurses[0] = ["Gold ore", 0, 0, 1, 110, false];
 resurses[1] = ["Gold nugget", 100, 15, 110, 0, false];
-resurses[2] = ["Gold ingot", 1000, 30, 1100, 0, false];	
+resurses[2] = ["Gold ignot", 1000, 30, 1100, 0, false];	
 let upgrades = [[], []];
 upgrades[0] = ["Pickaxe", 1, 10, 0, 1, 1.1, "Pickaxe", 100];
 upgrades[1] = ["Miner", 5, 25, 0, 1, 1.3, "Miner", 300];
 upgrades[2] = ["Excavator", 7, 50, 0, 1, 1.5, "Excavator", 500];
 upgrades[3] = ["Drill", 11, 100, 0, 1, 1.7, "Drill", 700];
 upgrades[4] = ["Quarry", 13, 150, 0, 1, 1.9, "Quarry", 900];
+let modups = [[[], []], [[], []]];
+modups[0][0] = [100, 1.5, 25];
+modups[0][1] = [1000, 2, 50];
+modups[0][2] = [5000, 2.5, 25];
+modups[1][0] = [2500, 1.5, 20];
+modups[1][1] = [5000, 2, 25];
+modups[1][2] = [10000, 2.5, 50];
+modups[2][0] = [5000, 1.5, 25];
+modups[2][1] = [10000, 2, 50];
+modups[2][2] = [25000, 2.5, 100];
 //console.log(upgrades);
 function start(){
+	for (var i = 0; i < craftlabels.length; i++){
+		craftlabels[i].innerText = "Craft " + resurses[i+1][0];
+	}
 	for (var i = 0; i < resursesDiv.length; i++){
 		resursesDiv[i].innerText = resurses[i][4];
 	}
@@ -74,6 +88,7 @@ function craft(id) {
 		if (resurses[0][4] >= resurses[id][1]){
 			resurses[id][5] = true;
 			resurses[0][4] -= resurses[id][1];
+			start();
 		}
 	}
 }
