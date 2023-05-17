@@ -8,6 +8,7 @@ let upgradedescription = document.getElementsByClassName("upgradedescription");
 let craftscales = document.getElementsByClassName("craftscales");
 let craftButtons = document.getElementsByClassName("craftButton");
 let craftlabels = document.getElementsByClassName("craftlabel");
+let upgradetable = document.getElementById("upgradetable");
 //let goldore = 110;
 let resurses = [[], []];
 resurses[0] = ["Gold ore", 0, 0, 1, 110, false];
@@ -19,7 +20,7 @@ upgrades[1] = ["Miner", 5, 25, 0, 1, 1.3, "Miner", 300];
 upgrades[2] = ["Excavator", 7, 50, 0, 1, 1.5, "Excavator", 500];
 upgrades[3] = ["Drill", 11, 100, 0, 1, 1.7, "Drill", 700];
 upgrades[4] = ["Quarry", 13, 150, 0, 1, 1.9, "Quarry", 900];
-let modups = [[[], []], [[], []]];
+let modups = [[[], []], [[], []], [[], []]];
 modups[0][0] = [100, 1.5, 25];
 modups[0][1] = [1000, 2, 50];
 modups[0][2] = [5000, 2.5, 25];
@@ -47,6 +48,7 @@ function start(){
 			scales[i].style.display = "flex";
 		}
 	}
+	table()
 }
 function Auto() {
 
@@ -91,5 +93,35 @@ function craft(id) {
 			start();
 		}
 	}
+}
+function table() {
+	for (let i = 0; i < modups.length; i++) {
+		let tr = document.createElement('tr');
+		for (let o = 0; o < modups[i].length; o++) {
+			let td = document.createElement('td');
+			let p = document.createElement('p');
+			let button = document.createElement('button');
+			td.appendChild(p);
+			td.appendChild(button);
+			tr.appendChild(td);
+		}
+	
+		upgradetable.appendChild(tr);
+	}
+	for (var i = 0; i < upgradetable.children.length; i++){
+		//console.log(upgradetable.children[i].innerHTML.substr(3, upgradetable.children[i].innerHTML.length - 1));
+		//upgradetable.children[i].innerHTML = upgradetable.children[i].innerHTML.substr(0, 3) + 'onclick="modups_func('+i+','+o+')"' + upgradetable.children[i].innerHTML.substr(3, upgradetable.children[i].innerHTML.length - 1);
+		console.log(upgradetable.children[i].innerHTML.substr(0, 3) + ' onclick="modups_func('+i+','+o+')"' + upgradetable.children[i].innerHTML.substr(3, upgradetable.children[i].innerHTML.length - 1));
+		for (var o = 0; o < upgradetable.children[i].children.length; o++){
+			upgradetable.children[i].children[o].children[0].innerText = "Upgrade " + upgrades[i][0] + " (gold ore mod "+ modups[i][o][1]+")";
+			upgradetable.children[i].children[o].children[1].innerText = modups[i][o][0];
+			//console.log(upgradetable.children[i].children[o].children[1].innerHTML.length);
+			//upgradetable.children[i].children[o].children[1].onclick = "modups_func("+i+","+o")";
+			//console.log(upgradetable.children[i].children[o].children[1].onclick);
+		}
+	}
+}
+function modups_func(i, o){
+	
 }
 setInterval(scale, 10);
