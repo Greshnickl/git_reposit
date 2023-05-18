@@ -11,7 +11,7 @@ let craftlabels = document.getElementsByClassName("craftlabel");
 let upgradetable = document.getElementById("upgradetable");
 //let goldore = 110;
 let resurses = [[], []];
-resurses[0] = ["Gold ore", 0, 0, 1, 110, false];
+resurses[0] = ["Gold ore", 0, 0, 1, 1000, false];
 resurses[1] = ["Gold nugget", 100, 15, 110, 0, false];
 resurses[2] = ["Gold ignot", 1000, 30, 1100, 0, false];	
 let upgrades = [[], []];
@@ -21,15 +21,15 @@ upgrades[2] = ["Excavator", 7, 50, 0, 1, 1.5, "Excavator", 500];
 upgrades[3] = ["Drill", 11, 100, 0, 1, 1.7, "Drill", 700];
 upgrades[4] = ["Quarry", 13, 150, 0, 1, 1.9, "Quarry", 900];
 let modups = [[[], []], [[], []], [[], []]];
-modups[0][0] = [100, 1.5, 25];
-modups[0][1] = [1000, 2, 50];
-modups[0][2] = [5000, 2.5, 25];
-modups[1][0] = [2500, 1.5, 20];
-modups[1][1] = [5000, 2, 25];
-modups[1][2] = [10000, 2.5, 50];
-modups[2][0] = [5000, 1.5, 25];
-modups[2][1] = [10000, 2, 50];
-modups[2][2] = [25000, 2.5, 100];
+modups[0][0] = [100, 1.5, 25, 0]; //price, mod, pricemod, resurse type need
+modups[0][1] = [1000, 2, 50, 0];
+modups[0][2] = [5000, 2.5, 25, 0];
+modups[1][0] = [2500, 1.5, 20, 0];
+modups[1][1] = [5000, 2, 25, 0];
+modups[1][2] = [10000, 2.5, 50, 0];
+modups[2][0] = [5000, 1.5, 25, 0];
+modups[2][1] = [10000, 2, 50, 0];
+modups[2][2] = [25000, 2.5, 100, 0];
 //console.log(upgrades);
 function start(){
 	for (var i = 0; i < craftlabels.length; i++){
@@ -48,7 +48,17 @@ function start(){
 			scales[i].style.display = "flex";
 		}
 	}
-	table()
+	for (var i = 0; i < upgradetable.children.length; i++){
+		for (var o = 0; o < upgradetable.children[i].children.length; o++){
+			for (var k = 0; k < resurses.length; k++){
+				if (modups[i][o][3] === k){
+					upgradetable.children[i].children[o].children[0].innerText = "Upgrade " + upgrades[i][0] + " (gold ore mod " + modups[i][o][1] + ")";
+					upgradetable.children[i].children[o].children[1].innerText = modups[i][o][0] + " " + resurses[k][0].toLowerCase();
+				}
+			}
+		}
+
+	}
 }
 function Auto() {
 
@@ -111,17 +121,30 @@ function table() {
 	for (var i = 0; i < upgradetable.children.length; i++){
 		//console.log(upgradetable.children[i].innerHTML.substr(3, upgradetable.children[i].innerHTML.length - 1));
 		//upgradetable.children[i].innerHTML = upgradetable.children[i].innerHTML.substr(0, 3) + 'onclick="modups_func('+i+','+o+')"' + upgradetable.children[i].innerHTML.substr(3, upgradetable.children[i].innerHTML.length - 1);
-		console.log(upgradetable.children[i].innerHTML.substr(0, 3) + ' onclick="modups_func('+i+','+o+')"' + upgradetable.children[i].innerHTML.substr(3, upgradetable.children[i].innerHTML.length - 1));
+		//console.log(upgradetable.children[i].innerHTML.substr(0, 3) + ' onclick="modups_func('+i+','+o+')"' + upgradetable.children[i].innerHTML.substr(3, upgradetable.children[i].innerHTML.length - 1));
 		for (var o = 0; o < upgradetable.children[i].children.length; o++){
-			upgradetable.children[i].children[o].children[0].innerText = "Upgrade " + upgrades[i][0] + " (gold ore mod "+ modups[i][o][1]+")";
-			upgradetable.children[i].children[o].children[1].innerText = modups[i][o][0];
-			//console.log(upgradetable.children[i].children[o].children[1].innerHTML.length);
+			for (var k = 0; k < resurses.length; k++){
+				if (modups[i][o][3] === k){
+					upgradetable.children[i].children[o].children[0].innerText = "Upgrade " + upgrades[i][0] + " (gold ore mod " + modups[i][o][1] + ")";
+					upgradetable.children[i].children[o].children[1].innerText = modups[i][o][0] + " " + resurses[k][0].toLowerCase();
+				}
+			}
+			//upgradetable.children[i].children[o].children[0].innerText = "Upgrade " + upgrades[i][0] + " (gold ore mod "+ modups[i][o][1]+")";
+			//upgradetable.children[i].children[o].children[1].innerText = modups[i][o][0];
+			for (var j = 0; j < upgradetable.children[i].children[o].innerHTML.length; j++){
+				if (upgradetable.children[i].children[o].innerHTML[j] == 'n' && upgradetable.children[i].children[o].innerHTML[j+1] == '>') {
+					upgradetable.children[i].children[o].innerHTML = upgradetable.children[i].children[o].innerHTML.substr(0, j+1) + " onclick=\" modups_func("+i+","+ o+")\"" + upgradetable.children[i].children[o].innerHTML.substr(j+1, upgradetable.children[i].children[o].innerHTML.length);
+					break;
+				}
+			}
 			//upgradetable.children[i].children[o].children[1].onclick = "modups_func("+i+","+o")";
 			//console.log(upgradetable.children[i].children[o].children[1].onclick);
 		}
 	}
 }
 function modups_func(i, o){
-	
+	if (resurses[modups[i][o][3]][4] >= modups[i][o][0]){
+		
+	}
 }
 setInterval(scale, 10);
