@@ -56,11 +56,9 @@ function start(){
 	for (var i = 0; i< upgradenames.length; i++){
 		upgradenames[i].innerText = upgrades[i][0] + " Cost: " + upgrades[i][2] + " gold ore";
 		if (upgrades[i][3] == 0) {
-			scales[i].style.display = "none";
 			upgradedescription[i].innerText = "+ " + upgrades[i][1]*upgrades[i][4] + " gold ore per cycle";
 		} else {
 			upgradedescription[i].innerText = "+ " + upgrades[i][1]*upgrades[i][3]*upgrades[i][4] + " gold ore per cycle";
-			scales[i].style.display = "flex";
 		}
 	}
 	for (var i = 0; i < upgradetable.children.length; i++){
@@ -148,7 +146,7 @@ function modups_func(i, o){
 	start();
 }
 setInterval(scale, 10);
-
+//scales[0].style.backgroundColor = "white";
 
 
 //commit
